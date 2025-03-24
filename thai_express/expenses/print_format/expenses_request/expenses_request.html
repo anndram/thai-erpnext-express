@@ -1,0 +1,96 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header -%}
+<style>
+    .table {
+        table-layout: auto;
+        margin-bottom: 0;
+    }
+    .table th,
+    .table td {
+        vertical-align: middle;
+        white-space: nowrap;
+        text-align: center;
+        width: auto;
+    }
+    .table th.w-15,
+    .table td.w-15 {
+        width: 15%;
+    }
+    .table th.fit,
+    .table td.fit {
+        width: 1%;
+    }
+    .subheader {
+        font-size: 1.1rem;
+    }
+</style>
+<div class="page-break">
+    {%- if not doc.get("print_heading") and not doc.get("select_print_heading")
+        and doc.set("select_print_heading", _("Expenses Request")) -%}{%- endif -%}
+    {{ add_header(0, 1, doc, letter_head, no_letterhead, print_settings) }}
+    <div class="row my-4">
+        <div class="col-12">
+            <table class="table table-sm table-borderless table-condensed">
+                {%- for fcol, scol in (
+                    ((_("Name"), doc.name), (_("Date"), frappe.format_date(doc.posting_date))),
+                    ((_("Company"), doc.company), (_("Status"),  _(doc.status))),
+                ) -%}
+                <tr>
+                    <td scope="row" class="fit text-left font-weight-bold">{{ fcol[0] }}</td>
+                    <td class="fit">:</td>
+                    <td>{{ fcol[1] }}</td>
+                    <td class="fit text-left font-weight-bold">{{ scol[0] }}</td>
+                    <td class="fit">:</td>
+                    <td>{{ scol[1] }}</td>
+                </tr>
+                {%- endfor -%}
+            </table>
+        </div>
+    </div>
+    <hr/>
+    <div class="row mt-4">
+        <div class="col-12 display-4 subheader">{{ _("Expenses") }}</div>
+    </div>
+    <div class="row my-4">
+        <div class="col-12">
+            <table class="table table-sm table-bordered table-condensed">
+                <tr>
+                    <th scope="col" class="font-weight-bold text-left">{{ _("Expense") }}</th>
+                    <th scope="col" class="font-weight-bold text-left">{{ _("Expense Item") }}</th>
+                    <th scope="col" class="font-weight-bold">{{ _("Description") }}</th>
+                    <th scope="col" class="fit font-weight-bold">{{ _("Total") }}</th>
+                    <th scope="col" class="fit font-weight-bold">{{ _("Is Advance") }}</th>
+                    <th scope="col" class="fit font-weight-bold">{{ _("Required By") }}</th>
+                </tr>
+                {% set expenses = frappe.get_all('Expense', filters={'name': ["in", [v.expense for v in doc.expenses]]}, fields=["name", "expense_item", "description", "total", "is_advance", "required_by"]) %}
+                {% for exp in expenses %}
+                
+                <tr>
+                    <td scope="row" class="text-left">{{ exp.name }}</td>
+                    <td class="text-left">{{ exp.expense_item }}</td>
+                    <td class="text-justify">{{ exp.description }}</td>
+                    <td class="fit">{{ exp.get_formatted("total") }}</td>
+                    <td class="fit">{{ _("Yes") if exp.is_advance else _("No") }}</td>
+                    <td class="fit">{{ frappe.format_date(exp.required_by) }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% if doc.remarks %}
+    <hr/>
+    <div class="row my-4">
+        <div class="col-12">
+            <label class="display-4 subheader">{{ _("Remarks") }}</label>
+        </div>
+        <div class="col-12 mt-2 text-justify">
+            {{ doc.remarks }}
+        </div>
+    </div>
+    {% endif %}
+    <hr/>
+    <div class="row my-4">
+        <div class="col-12">
+            <label class="display-4 subheader">{{ doc.owner }}</label>
+        </div>
+    </div>
+</div>

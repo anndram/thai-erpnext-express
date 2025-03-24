@@ -1,0 +1,23 @@
+[project]
+name = "thai_express"
+authors = [
+    {name = "Anndream", email = "anndram.com@gmail.com"}
+]
+description = "Thai Express management module for ERPNext."
+keywords = ["frappe", "erpnext", "expenses"]
+classifiers = [
+    "Development Status :: 3 - Development",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python"
+]
+requires-python = ">=3.6"
+readme = "README.md"
+dynamic = ["version"]
+dependencies = [
+    "frappe>=14.0.0",
+    "erpnext>=14.0.0"
+]
+
+[project.urls]
+Documentation = "https://github.com/anndram/thai-erpnext-express"
+Source = "https://github.com/anndram/thai-erpnext-express"

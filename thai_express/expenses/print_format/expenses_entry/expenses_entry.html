@@ -1,0 +1,100 @@
+{%- from "templates/print_formats/standard_macros.html" import add_header -%}
+<style>
+    .table {
+        table-layout: auto;
+        margin-bottom: 0;
+    }
+    .table th,
+    .table td {
+        vertical-align: middle;
+        white-space: nowrap;
+        text-align: center;
+        width: auto;
+    }
+    .table th.w-15,
+    .table td.w-15 {
+        width: 15%;
+    }
+    .table th.fit,
+    .table td.fit {
+        width: 1%;
+    }
+    .subheader {
+        font-size: 1.1rem;
+    }
+</style>
+<div class="page-break">
+    {%- if not doc.get("print_heading") and not doc.get("select_print_heading")
+        and doc.set("select_print_heading", _("Expenses Entry")) -%}{%- endif -%}
+    {{ add_header(0, 1, doc, letter_head, no_letterhead, print_settings) }}
+    <div class="row my-4">
+        <div class="col-12">
+            <table class="table table-sm table-borderless table-condensed">
+                {%- for fcol, scol in (
+                    ((_("Name"), doc.name), (_("Date"), frappe.format_date(doc.posting_date))),
+                    ((_("Company"), doc.company), (_("Status"), _("Submitted") if doc.docstatus == 1 else (_("Cancelled") if doc.docstatus == 2 else _("Pending")))),
+                    ((_("Mode of Payment"), doc.mode_of_payment), (_("Payment Account"), doc.payment_account)),
+                    ((_("Payment Reference"), doc.payment_reference or "N/A"), (_("Payment Clearance"), frappe.format_date(doc.clearance_date) if doc.clearance_date else _("N/A"))),
+                ) -%}
+                <tr>
+                    <td scope="row" class="fit text-left font-weight-bold">{{ fcol[0] }}</td>
+                    <td class="fit">:</td>
+                    <td>{{ fcol[1] }}</td>
+                    <td class="fit text-left font-weight-bold">{{ scol[0] }}</td>
+                    <td class="fit">:</td>
+                    <td>{{ scol[1] }}</td>
+                </tr>
+                {%- endfor -%}
+            </table>
+        </div>
+    </div>
+    <hr/>
+    <div class="row mt-4">
+        <div class="col-12 display-4 subheader">{{ _("Expenses") }}</div>
+    </div>
+    <div class="row my-4">
+        <div class="col-12">
+            <table class="table table-sm table-bordered table-condensed">
+                <tr>
+                    <th scope="col" class="font-weight-bold text-left">{{ _("Expense Account") }}</th>
+                    <th scope="col" class="font-weight-bold">{{ _("Description") }}</th>
+                    <th scope="col" class="fit font-weight-bold">{{ _("Is Advance") }}</th>
+                    <th scope="col" class="fit font-weight-bold">{{ _("Cost") }}</th>
+                </tr>
+                {% for exp in doc.expenses %}
+                <tr>
+                    <td scope="row" class="text-left">{{ exp.account }}</td>
+                    <td class="text-justify">{{ exp.description }}</td>
+                    <td class="fit">{{ _("Yes") if exp.is_advance else _("No") }}</td>
+                    <td class="fit">{{ exp.get_formatted("cost"}) }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td scope="row" class="text-right font-weight-bold" colspan="3">{{ _("Exchange Rate") }}</td>
+                    <td class="font-weight-bold table-dark">{{ doc.get_formatted("exchange_rate") }}</td>
+                </tr>
+                <tr>
+                    <td scope="row" class="text-right font-weight-bold" colspan="3">{{ _("Total") }}</td>
+                    <td class="font-weight-bold table-dark">{{ doc.get_formatted("total") }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    {% if doc.remarks %}
+    <hr/>
+    <div class="row my-4">
+        <div class="col-12">
+            <label class="display-4 subheader">{{ _("Remarks") }}</label>
+        </div>
+        <div class="col-12 mt-2 text-justify">
+            {{ doc.remarks }}
+        </div>
+    </div>
+    {% endif %}
+    <hr/>
+    <div class="row my-4">
+        <div class="col-12">
+            <label class="display-4 subheader">{{ doc.owner }}</label>
+        </div>
+    </div>
+</div>
