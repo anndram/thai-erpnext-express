@@ -15,7 +15,7 @@ def get_data():
             "color": "blue",
             "icon": "octicon octicon-note",
             "type": "module",
-            "label": _("Thai Expenses"),
+            "label": _("Thai Express"),
             "description": _("Thai Express")
         }
     ]

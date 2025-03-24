@@ -7,8 +7,8 @@
 from . import __version__ as app_version
 
 
-app_name = "thai_expenses"
-app_title = "Thai Expenses"
+app_name = "thai_express"
+app_title = "Thai Express"
 app_publisher = "Anndream"
 app_description = "An expenses management module for ERPNext."
 app_icon = "octicon octicon-note"
