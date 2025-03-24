@@ -13,7 +13,7 @@ with open('requirements.txt') as f:
 
 
 setup(
-    name='thai_expenses',
+    name='thai_express',
     version=version,
     description='Thai Express management module for ERPNext.',
     author='Anndream',
