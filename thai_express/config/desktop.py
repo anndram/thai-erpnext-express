@@ -10,7 +10,7 @@ from frappe import _
 def get_data():
     return [
         {
-            "module_name": "Thai Expenses",
+            "module_name": "Thai Express",
             "category": "Modules",
             "color": "blue",
             "icon": "octicon octicon-note",
