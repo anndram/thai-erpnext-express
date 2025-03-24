@@ -110,7 +110,7 @@
  "links": [],
  "modified": "2022-04-04 04:04:04.119400",
  "modified_by": "Administrator",
- "module": "Expenses",
+ "module": "Thai Express",
  "name": "Expense Type",
  "nsm_parent_field": "parent_type",
  "naming_rule": "By fieldname",
