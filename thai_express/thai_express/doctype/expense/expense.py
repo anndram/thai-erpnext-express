@@ -9,7 +9,7 @@ from frappe import _
 from frappe.utils import cint, flt, cstr, getdate
 from frappe.model.document import Document
 
-from expenses.utils import (
+from thai_express.utils import (
     error,
     clear_document_cache,
     is_doc_exist,

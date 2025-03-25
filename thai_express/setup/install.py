@@ -8,8 +8,8 @@ import frappe
 from frappe.utils import now
 from frappe.utils.user import get_system_managers
 
-from expenses import __version__
-from expenses.utils.settings import settings
+from thai_express import __version__
+from thai_express.utils.settings import settings
 
 
 def after_install():

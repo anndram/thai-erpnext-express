@@ -10,7 +10,7 @@ import frappe
 from frappe import _
 from frappe.utils.logger import set_log_level
 
-from expenses import __module__, __production__
+from thai_express import __module__, __production__
 
 
 if not __production__:

@@ -8,8 +8,8 @@ import frappe
 from frappe import _
 from frappe.utils import cint, flt
 
-from expenses.utils.common import error, get_cached_value
-from expenses.utils.entry import _ENTRY
+from thai_express.utils.common import error, get_cached_value
+from thai_express.utils.entry import _ENTRY
 
 
 def execute(filters=None):

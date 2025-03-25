@@ -14,7 +14,7 @@ from frappe.desk.doctype.notification_settings.notification_settings import (
     is_notifications_enabled
 )
 
-from expenses import __version__
+from thai_express import __version__
 from .common import log_error, parse_json_if_valid
 from .settings import *
 

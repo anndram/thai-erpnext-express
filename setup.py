@@ -5,7 +5,7 @@
 
 
 from setuptools import setup, find_packages
-from expenses import __version__ as version
+from thai_express import __version__ as version
 
 
 with open('requirements.txt') as f:

@@ -6,7 +6,7 @@
 
 from frappe.model.document import Document
 
-from expenses.utils import get_cached_value
+from thai_express.utils import get_cached_value
 
 
 class ExpenseAccount(Document):
