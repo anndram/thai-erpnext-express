@@ -8,7 +8,7 @@
 
 class Expenses {
     constructor() {
-        this._path = 'expenses.utils.';
+        this._path = 'thai_express.utils.';
         this._frm = null;
         this._cache = {};
     }

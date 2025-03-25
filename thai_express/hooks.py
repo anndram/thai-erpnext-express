@@ -34,8 +34,8 @@ doctype_list_js = {
 }
 
 
-after_install = "expenses.setup.install.after_install"
-after_uninstall = "expenses.setup.uninstall.after_uninstall"
+after_install = "thai_express.setup.install.after_install"
+after_uninstall = "thai_express.setup.uninstall.after_uninstall"
 
 
 fixtures = [
@@ -48,7 +48,7 @@ fixtures = [
 
 scheduler_events = {
     "daily": [
-        "expenses.utils.update.auto_check_for_update"
+        "thai_express.utils.update.auto_check_for_update"
     ]
 }
 
