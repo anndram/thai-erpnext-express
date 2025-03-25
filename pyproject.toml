@@ -4,7 +4,7 @@ authors = [
     {name = "Anndream", email = "anndram.com@gmail.com"}
 ]
 description = "Thai Express management module for ERPNext."
-keywords = ["frappe", "erpnext", "expenses"]
+keywords = ["frappe", "erpnext", "thai express"]
 classifiers = [
     "Development Status :: 3 - Development",
     "License :: OSI Approved :: MIT License",

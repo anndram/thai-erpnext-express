@@ -1,4 +1,4 @@
-# ERPNext Expenses © 2022
-# Author:  Ameen Ahmed
+# ERPNext Express © 2024
+# Author:  Anndream
 # Company: Level Up Marketing & Software Development Services
 # Licence: Please refer to LICENSE file
